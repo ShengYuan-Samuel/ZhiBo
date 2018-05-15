@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="25dp"
+    android:orientation="vertical">
+
+      <FrameLayout
+              android:id="@+id/fl_content"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_weight="1">
+
+          </FrameLayout>
+          <RadioGroup
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:weightSum="5">
+
+
+              <RadioButton
+                  android:id="@+id/live_rb"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:button="@null"
+                  android:textColor="@drawable/radio_rg_tv"
+                  android:drawableTop="@mipmap/ic_launcher"
+                  android:gravity="center"
+                  android:text="直播" />
+
+              <RadioButton
+                  android:id="@+id/broadcasting_rb"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:button="@null"
+                  android:textColor="@drawable/radio_rg_tv"
+                  android:drawableTop="@mipmap/ic_launcher"
+                  android:gravity="center"
+                  android:text="电台" />
+
+              <RadioButton
+                    android:id="@+id/broadcast_rb"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:background="@mipmap/ic_launcher"
+                  android:button="@null"
+                  android:gravity="center_horizontal"
+                  android:layout_gravity="center"/>
+
+              <RadioButton
+                  android:id="@+id/find_rb"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:textColor="@drawable/radio_rg_tv"
+                  android:button="@null"
+                  android:drawableTop="@mipmap/ic_launcher"
+                  android:gravity="center"
+                  android:text="发现" />
+              <RadioButton
+                  android:id="@+id/my_rb"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:button="@null"
+                  android:drawableTop="@mipmap/ic_launcher"
+                  android:gravity="center"
+                  android:textColor="@drawable/radio_rg_tv"
+                  android:text="我的" />
+          </RadioGroup>
+
+
+</LinearLayout> 
+
