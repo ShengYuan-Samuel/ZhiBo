@@ -5,11 +5,11 @@ import android.util.Log;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.jiyun.zhibo.App;
-
+import com.jiyun.zhibo.model.biz.RegisterPswService;
+import com.jiyun.zhibo.model.biz.RegisterService;
 import java.io.IOException;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-
 import okhttp3.Cache;
 import okhttp3.Headers;
 import okhttp3.Interceptor;
@@ -32,17 +32,12 @@ public class RetrofitUtils {
                 if (TextUtils.isEmpty(response.cacheControl().toString())) {
                     return response.newBuilder().addHeader("Cache-Control", "max-age=60*60*24").build();
                 }
-                Headers headers = response.headers();
-                Set<String> keys = headers.names();
-                for (String key : keys) {
-                    String value = headers.get(key);
-                    Log.d("RetrofitUtils", key + ":" + value);
-                    if (("Set-Cookie").equals(key)){
-                        String cookie = headers.get(key);
-                        //UserInFoUtils.getInstance().saveVerifycode(headers.get(key));
-                        Log.d("RetrofitUtils", cookie);
-                    }
-                }
+                /*Headers headers = response.headers();
+                Set<String> names = headers.names();
+                for (String name : names) {
+                    String s = headers.get(name);
+                    Log.d("RetrofitUtils", name + ":------" + s);
+                }*/
                 return response;
             }
         };
@@ -54,7 +49,7 @@ public class RetrofitUtils {
                 .addNetworkInterceptor(interceptor).build();
         retrofit = new Retrofit.Builder()
                 .client(okHttpClient)
-                .baseUrl("")
+                .baseUrl(Urls.APPSERVICEURL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
@@ -70,6 +65,13 @@ public class RetrofitUtils {
         }
         return retiofitUtils;
     }
-
+    //这是获取验证码的
+    public RegisterService getRegisterService(){
+        return retrofit.create(RegisterService.class);
+    }
+    //这是手机完善信息的
+    public RegisterPswService getRegsterPswService(){
+        return retrofit.create(RegisterPswService.class);
+    }
 
 }

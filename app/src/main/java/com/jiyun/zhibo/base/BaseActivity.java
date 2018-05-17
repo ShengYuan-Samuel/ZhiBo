@@ -24,7 +24,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         //隐藏掉系统原先的导航栏
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(getLayOutId());
-
+        App.contxt = this;
         if (ImmersionBar.hasNavigationBar(this)) {//判断是否有导航栏
             ImmersionBar
                     .with(this)
@@ -38,7 +38,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
                     .init();
             Toast.makeText(this, "当前设备没有导航栏", Toast.LENGTH_SHORT).show();
         }
-        App.contxt = this;
+
         ButterKnife.bind(this);
         presenter =getPresenter();
         if (presenter != null){
@@ -68,6 +68,13 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         return null;
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        App.contxt = this;
+    }
+
     //这是统一返回layout的
     protected abstract int getLayOutId();
     //这是统一初始化的

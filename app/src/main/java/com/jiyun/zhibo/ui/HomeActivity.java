@@ -1,20 +1,18 @@
 package com.jiyun.zhibo.ui;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 
 import com.jiyun.zhibo.R;
 import com.jiyun.zhibo.base.BaseActivity;
-import com.jiyun.zhibo.ui.broadcastfragment.fragment.BroadCastFragment;
-import com.jiyun.zhibo.ui.broadcastingfragment.fragment.BroadCastingFragment;
-import com.jiyun.zhibo.ui.findfragment.fragment.FindFragment;
-import com.jiyun.zhibo.ui.livefragment.fragment.LiveFragment;
-import com.jiyun.zhibo.ui.myfragment.fragment.MyFragment;
+import com.jiyun.zhibo.ui.broadcast.fragment.BroadCastFragment;
+import com.jiyun.zhibo.ui.broadcasting.fragment.BroadCastingFragment;
+import com.jiyun.zhibo.ui.find.fragment.FindFragment;
+import com.jiyun.zhibo.ui.live.fragment.LiveFragment;
+import com.jiyun.zhibo.ui.my.fragment.MyFragment;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class HomeActivity extends BaseActivity {
@@ -24,7 +22,7 @@ public class HomeActivity extends BaseActivity {
     @BindView(R.id.broadcasting_rb)
     RadioButton broadcastingRb;
     @BindView(R.id.broadcast_rb)
-    RadioButton broadcastRb;
+    ImageView broadcastRb;
     @BindView(R.id.find_rb)
     RadioButton findRb;
     @BindView(R.id.my_rb)
@@ -38,6 +36,8 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     protected void init() {
+        setContentView(R.id.fl_content, LiveFragment.class);
+        liveRb.setChecked(true);
 
     }
 
