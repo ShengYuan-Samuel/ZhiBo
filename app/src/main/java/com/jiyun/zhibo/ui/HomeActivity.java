@@ -1,6 +1,9 @@
 package com.jiyun.zhibo.ui;
 
+import android.Manifest;
 import android.content.Intent;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -39,6 +42,7 @@ public class HomeActivity extends BaseActivity {
     protected void init() {
         setContentView(R.id.fl_content, LiveFragment.class);
         liveRb.setChecked(true);
+        initPerssion();
 
     }
 
@@ -68,4 +72,20 @@ public class HomeActivity extends BaseActivity {
                 break;
         }
     }
+
+    private void initPerssion(){
+        if (Build.VERSION.SDK_INT >= 23) {
+            String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CALL_PHONE, Manifest.permission.READ_LOGS, Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.SET_DEBUG_APP, Manifest.permission.SYSTEM_ALERT_WINDOW, Manifest.permission.GET_ACCOUNTS, Manifest.permission.WRITE_APN_SETTINGS,  Manifest.permission.CAMERA,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.CALL_PHONE,Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION};
+            ActivityCompat.requestPermissions(this, mPermissionList, 123);
+        }
+    }
+
+
+
+
+
+
 }
+
