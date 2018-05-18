@@ -1,14 +1,15 @@
 package com.jiyun.zhibo.ui;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 
 import com.jiyun.zhibo.R;
 import com.jiyun.zhibo.base.BaseActivity;
-import com.jiyun.zhibo.ui.broadcast.fragment.BroadCastFragment;
 import com.jiyun.zhibo.ui.broadcasting.fragment.BroadCastingFragment;
 import com.jiyun.zhibo.ui.find.fragment.FindFragment;
+import com.jiyun.zhibo.ui.live.activity.MyLiveActivity;
 import com.jiyun.zhibo.ui.live.fragment.LiveFragment;
 import com.jiyun.zhibo.ui.my.fragment.MyFragment;
 
@@ -57,7 +58,7 @@ public class HomeActivity extends BaseActivity {
                 setContentView(R.id.fl_content, BroadCastingFragment.class);
                 break;
             case R.id.broadcast_rb:
-                setContentView(R.id.fl_content, BroadCastFragment.class);
+                startActivity(new Intent(this, MyLiveActivity.class));
                 break;
             case R.id.find_rb:
                 setContentView(R.id.fl_content, FindFragment.class);

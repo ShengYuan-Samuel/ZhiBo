@@ -9,4 +9,5 @@
     <color name="colorWhite">#ffffff</color>
     <color name="colorAnYellow">#FFC7A401</color>
     <color name="colorGrayTou">#f4f4f4</color>
+    <color name="colorTouMing">#50000000</color>
 </resources>
