@@ -1,10 +1,18 @@
 package com.jiyun.zhibo.presenter;
 
+import android.util.Log;
+
+import com.jiyun.zhibo.App;
 import com.jiyun.zhibo.contract.RegisterPswContract;
 import com.jiyun.zhibo.model.biz.RegisterPswService;
 import com.jiyun.zhibo.model.entify.LoginBean;
 import com.jiyun.zhibo.model.entify.RegisterPhoneBean;
 import com.jiyun.zhibo.model.http.HttpFactory;
+import com.jiyun.zhibo.utils.NetUtil;
+import com.jiyun.zhibo.utils.SavaShareUtils;
+import com.jiyun.zhibo.utils.SignUtils;
+
+import java.util.HashMap;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -56,6 +64,10 @@ public class RegisterPswPresenter implements RegisterPswContract.Presenter{
 
     @Override
     public void getRegLoginData(String phone, String code) {
+        final HashMap<String,String> mHash = new HashMap<>();
+        mHash.put("phone",phone);
+        mHash.put("captch",code);
+
         regsterPswService.getRegLoginData(phone, code)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())

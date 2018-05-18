@@ -82,6 +82,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
                 intent.putExtra("phone",phone);
                 intent.putExtra("code",code);
                 startActivity(intent);
+                finish();
                 break;
         }
     }

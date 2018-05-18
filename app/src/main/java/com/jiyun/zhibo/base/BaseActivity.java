@@ -35,6 +35,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
             ImmersionBar
                     .with(this)
                     .statusBarColor(R.color.grey)
+
                     .init();
             Toast.makeText(this, "当前设备没有导航栏", Toast.LENGTH_SHORT).show();
         }
@@ -82,10 +83,17 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     //这是统一加载数据的
     protected abstract void loadData();
 
-    @Override
-    protected void onStop() {
+   /* @Override
+    protected void () {
         super.onStop();
         App.contxt = null;
+    }*/
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        App.contxt = null;
+
     }
 
     @Override

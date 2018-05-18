@@ -5,6 +5,8 @@ import android.util.Log;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.jiyun.zhibo.App;
+import com.jiyun.zhibo.model.biz.LoginService;
+import com.jiyun.zhibo.model.biz.MyLoginService;
 import com.jiyun.zhibo.model.biz.RegisterPswService;
 import com.jiyun.zhibo.model.biz.RegisterService;
 import java.io.IOException;
@@ -73,5 +75,9 @@ public class RetrofitUtils {
     public RegisterPswService getRegsterPswService(){
         return retrofit.create(RegisterPswService.class);
     }
+    //这是获取手机登录的
+    public LoginService getLoginService(){return retrofit.create(LoginService.class);}
+    //这是获取个人信息的
+    public MyLoginService getMyLoginService(){return retrofit.create(MyLoginService.class);}
 
 }

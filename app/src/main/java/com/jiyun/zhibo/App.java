@@ -5,5 +5,5 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
 public class App extends Application{
-    public static Context contxt;
+    public static AppCompatActivity contxt;
 }

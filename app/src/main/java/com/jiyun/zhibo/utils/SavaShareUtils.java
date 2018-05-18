@@ -12,7 +12,7 @@ public class SavaShareUtils {
     private final SharedPreferences.Editor edit;
 
     public SavaShareUtils() {
-        sharedPreferences = App.contxt.getSharedPreferences(YIZIAN, Context.MODE_PRIVATE);
+        sharedPreferences = App.contxt.getSharedPreferences(YIZIAN, App.contxt.MODE_PRIVATE);
         edit = sharedPreferences.edit();
     }
     public static SavaShareUtils getInstance(){
@@ -42,7 +42,25 @@ public class SavaShareUtils {
     public String getUserNo(){
         return sharedPreferences.getString("userNo",null);
     }
+    //这是保存sign的
+    public void setSign(String sign){
+        edit.putString("sign",sign);
+        edit.commit();
+    }
+    //这是获取sign的
+    public String getSign(){
+        return sharedPreferences.getString("sign",null);
+    }
 
+    //这是保存当前时间的
+    public void setTime(String time){
+        edit.putString("time",time);
+        edit.commit();
+    }
+    //这是获取保存的时间的
+    public String getTime(){
+        return sharedPreferences.getString("time",null);
+    }
 
 
 
