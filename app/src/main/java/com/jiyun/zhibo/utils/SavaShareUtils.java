@@ -42,11 +42,16 @@ public class SavaShareUtils {
     public String getUserNo(){
         return sharedPreferences.getString("userNo",null);
     }
+
+    public void clearUserInFo(){
+        sharedPreferences.edit().remove("userNo").remove("token").remove("sign").remove("time").remove("name").commit();
+    }
     //这是保存sign的
     public void setSign(String sign){
         edit.putString("sign",sign);
         edit.commit();
     }
+
     //这是获取sign的
     public String getSign(){
         return sharedPreferences.getString("sign",null);
@@ -62,6 +67,25 @@ public class SavaShareUtils {
         return sharedPreferences.getString("time",null);
     }
 
+    //这是保存姓名的
+    public void setName(String name){
+        edit.putString("name",name);
+        edit.commit();
+    }
+    //这是获取名字的
+    public String getName(){
+        return sharedPreferences.getString("name",null);
+    }
 
+    //这是保存头像的
+    public void setPhoto(String photo){
+        edit.putString("photo",photo);
+        edit.commit();
+
+    }
+    //这是获取头像的
+    public String getPhoto(){
+        return sharedPreferences.getString("photo",null);
+    }
 
 }

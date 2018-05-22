@@ -57,7 +57,7 @@ public class MyLiveActivity extends BaseActivity {
     //声明AMapLocationClientOption对象
     public AMapLocationClientOption mLocationOption;
     private TXLivePushConfig mLivePushConfig;
-    private TXLivePusher mLivePusher;
+    public static TXLivePusher mLivePusher;
 
     @Override
     protected int getLayOutId() {
@@ -100,6 +100,7 @@ public class MyLiveActivity extends BaseActivity {
                 mLivePusher.switchCamera();
                 break;
             case R.id.my_finish:
+                finish();
                 break;
         }
     }

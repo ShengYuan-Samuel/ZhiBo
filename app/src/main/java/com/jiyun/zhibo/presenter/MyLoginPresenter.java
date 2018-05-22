@@ -1,10 +1,18 @@
 package com.jiyun.zhibo.presenter;
 
+import android.util.Log;
+
 import com.jiyun.zhibo.contract.MyLoginContract;
 import com.jiyun.zhibo.model.biz.MyLoginService;
 import com.jiyun.zhibo.model.entify.LoginBean;
 import com.jiyun.zhibo.model.http.HttpFactory;
 import com.jiyun.zhibo.utils.SavaShareUtils;
+import com.jiyun.zhibo.utils.SignUtils;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.logging.SimpleFormatter;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -21,7 +29,12 @@ public class MyLoginPresenter implements MyLoginContract.Presenter {
 
     @Override
     public void getUserInFoData() {
-        myLoginService.getUserInFo(SavaShareUtils.getInstance().getTime(),SavaShareUtils.getInstance().getUserNo(),SavaShareUtils.getInstance().getSign())
+
+        HashMap<String, String> map = new HashMap<>();
+        map.put("time",SavaShareUtils.getInstance().getTime());
+        String token = SavaShareUtils.getInstance().getToken();
+
+        myLoginService.getUserInFo(SavaShareUtils.getInstance().getTime(),SavaShareUtils.getInstance().getUserNo(), SignUtils.getSign(map,token))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<LoginBean>() {

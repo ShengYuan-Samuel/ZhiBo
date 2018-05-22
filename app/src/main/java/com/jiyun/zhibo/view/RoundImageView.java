@@ -7,11 +7,14 @@ import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
 
 /**
@@ -20,7 +23,7 @@ import android.widget.ImageView;
 @SuppressLint("AppCompatCustomView")
 public class RoundImageView extends ImageView {
 
-
+/*
     //圆角大小，默认为10
     private int mBorderRadius = 10;
 
@@ -89,5 +92,49 @@ public class RoundImageView extends ImageView {
         drawable.setBounds(0, 0, w, h);
         drawable.draw(canvas);
         return bitmap;
+    }*/
+float width,height;
+
+    public RoundImageView(Context context) {
+        this(context, null);
     }
+
+    public RoundImageView(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public RoundImageView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        if (Build.VERSION.SDK_INT < 18) {
+            setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        }
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+        width = getWidth();
+        height = getHeight();
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+
+        if (width > 12 && height > 12) {
+            Path path = new Path();
+            path.moveTo(12, 0);
+            path.lineTo(width - 12, 0);
+            path.quadTo(width, 0, width, 12);
+            path.lineTo(width, height - 12);
+            path.quadTo(width, height, width - 12, height);
+            path.lineTo(12, height);
+            path.quadTo(0, height, 0, height - 12);
+            path.lineTo(0, 12);
+            path.quadTo(0, 0, 12, 0);
+            canvas.clipPath(path);
+        }
+
+        super.onDraw(canvas);
+    }
+
 }

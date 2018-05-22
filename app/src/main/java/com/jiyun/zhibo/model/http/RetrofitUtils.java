@@ -1,14 +1,19 @@
 package com.jiyun.zhibo.model.http;
 
+import android.os.ParcelUuid;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.jiyun.zhibo.App;
+import com.jiyun.zhibo.model.biz.LiveService;
 import com.jiyun.zhibo.model.biz.LoginService;
 import com.jiyun.zhibo.model.biz.MyLoginService;
+import com.jiyun.zhibo.model.biz.PayService;
 import com.jiyun.zhibo.model.biz.RegisterPswService;
 import com.jiyun.zhibo.model.biz.RegisterService;
+import com.jiyun.zhibo.model.biz.ZiYouBoService;
+
 import java.io.IOException;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -79,5 +84,18 @@ public class RetrofitUtils {
     public LoginService getLoginService(){return retrofit.create(LoginService.class);}
     //这是获取个人信息的
     public MyLoginService getMyLoginService(){return retrofit.create(MyLoginService.class);}
+    //这是获取轮播图的
+    public LiveService getLiveService(){
+        return retrofit.create(LiveService.class);
+    }
+
+    //这是创建房间的
+    public ZiYouBoService getZiYouBoService(){
+        return retrofit.create(ZiYouBoService.class);
+    }
+    //这是获取用户金币的
+    public PayService getPayService(){
+        return retrofit.create(PayService.class);
+    }
 
 }

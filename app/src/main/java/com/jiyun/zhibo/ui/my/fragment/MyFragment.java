@@ -28,6 +28,8 @@ import com.jiyun.zhibo.model.entify.LoginBean;
 import com.jiyun.zhibo.presenter.MyLoginPresenter;
 import com.jiyun.zhibo.ui.HomeActivity;
 import com.jiyun.zhibo.ui.login.activity.LoginActivity;
+import com.jiyun.zhibo.ui.login.activity.SeetingActivity;
+import com.jiyun.zhibo.ui.my.activity.WalletActivity;
 import com.jiyun.zhibo.ui.register.RegisterPswActivity;
 import com.jiyun.zhibo.utils.SavaShareUtils;
 import com.jiyun.zhibo.view.GlideCircleTransform;
@@ -83,7 +85,6 @@ public class MyFragment extends BaseFragment<MyLoginPresenter> implements MyLogi
     @Override
     protected void init() {
 
-
     }
 
     @Override
@@ -92,18 +93,25 @@ public class MyFragment extends BaseFragment<MyLoginPresenter> implements MyLogi
     }
 
 
-    @Override
+  @Override
     public void onResume() {
         super.onResume();
-        if (SavaShareUtils.getInstance().getUserNo() != null){
-            presenter.getUserInFoData();
-        }
-    }
+      if (SavaShareUtils.getInstance().getUserNo() !=null){
+          presenter.getUserInFoData();
+      }else {
+          mindUserName.setText("未登录");
+          personageFocusNumTv.setText(0+"");
+          personageFansNumTv.setText(0+"");
+      }
+
+
+  }
 
     @OnClick({R.id.personage_seeting, R.id.personage_relativelayout, R.id.personage_focus_layout, R.id.personage_fans_layout, R.id.mind_userChat, R.id.mind_userPrivilege, R.id.mind_userWallet, R.id.mind_userHelper, R.id.mind_userFans})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.personage_seeting:
+                startActivity(new Intent(getContext(),SeetingActivity.class));
                 break;
             case R.id.personage_relativelayout:
                 if (SavaShareUtils.getInstance().getUserNo() == null){
@@ -150,7 +158,7 @@ public class MyFragment extends BaseFragment<MyLoginPresenter> implements MyLogi
                     startActivity(new Intent(getContext(), LoginActivity.class));
 
                 }else{
-                    Log.d("MyFragment", "我跳转了");
+                   startActivity(new Intent(getContext(), WalletActivity.class));
                 }
                 break;
             case R.id.mind_userHelper:
@@ -193,6 +201,7 @@ public class MyFragment extends BaseFragment<MyLoginPresenter> implements MyLogi
             int followerSize = data.getFollowerSize();
             String nickName = data.getNickName();
             String cover = data.getCover();
+            Log.d("MyFragment", cover);
             Glide.with(getContext()).load(cover).bitmapTransform(new GlideCircleTransform(getContext())).diskCacheStrategy(DiskCacheStrategy.ALL).crossFade().into(mindUserphoto);
             mindUserName.setText(nickName);
             personageFocusNumTv.setText(followNum+"");

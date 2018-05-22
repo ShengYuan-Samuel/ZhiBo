@@ -91,6 +91,10 @@ public class RegisterPswActivity extends BaseActivity<RegisterPswPresenter> impl
         if (Integer.valueOf(loginBean.getCode()) == 200){
             String userNo = loginBean.getData().getUserNo();
             String token = loginBean.getData().getToken();
+            String nickName = loginBean.getData().getNickName();
+            String cover = loginBean.getData().getCover();
+            SavaShareUtils.getInstance().setPhoto(cover);
+            SavaShareUtils.getInstance().setName(nickName);
             SavaShareUtils.getInstance().setToken(token);
             SavaShareUtils.getInstance().setUserNo(userNo);
             long time = System.currentTimeMillis();

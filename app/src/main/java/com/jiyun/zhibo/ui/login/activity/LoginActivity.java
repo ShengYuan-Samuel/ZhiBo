@@ -51,7 +51,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     ImageView loginPhoneBtu;
     @BindView(R.id.login_regiter)
     LinearLayout loginRegiter;
-    private long time;
 
     @Override
     protected int getLayOutId() {
@@ -77,6 +76,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                 finish();
                 break;
             case R.id.login_seeting:
+
                 break;
             case R.id.login_weiXinBtu:
                 break;
@@ -91,7 +91,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             case R.id.notlogin_tv:
                 break;
             case R.id.login_btn:
-                time = System.currentTimeMillis();
                 presenter.getLoginData(loginPhoneEt.getText().toString().trim(),loginPswEt.getText().toString().trim());
 
                 break;
@@ -106,10 +105,14 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         if (Integer.valueOf(loginBean.getCode())==200){
             SavaShareUtils.getInstance().setToken(loginBean.getData().getToken());
             SavaShareUtils.getInstance().setUserNo(loginBean.getData().getUserNo());
+            String nickName = loginBean.getData().getNickName();
+            String cover = loginBean.getData().getCover();
+            SavaShareUtils.getInstance().setPhoto(cover);
+            SavaShareUtils.getInstance().setName(nickName);
             long time = System.currentTimeMillis();
             HashMap<String,String> hashMap = new HashMap<>();
             hashMap.put("time",String.valueOf(time));
-            String sign = SignUtils.getSign(hashMap, loginBean.getData().getToken());
+            String sign = SignUtils.getSign(hashMap,SavaShareUtils.getInstance().getToken());
             SavaShareUtils.getInstance().setSign(sign);
             SavaShareUtils.getInstance().setTime(time+"");
             //startActivity(new Intent(this, HomeActivity.class));

@@ -56,7 +56,6 @@ public class HomeActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.live_rb:
                 setContentView(R.id.fl_content, LiveFragment.class);
-
                 break;
             case R.id.broadcasting_rb:
                 setContentView(R.id.fl_content, BroadCastingFragment.class);

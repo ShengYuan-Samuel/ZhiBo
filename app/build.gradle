@@ -51,9 +51,12 @@ dependencies {
     implementation 'com.recker.flybanner:flybanner:1.3'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
     implementation 'com.gyf.barlibrary:barlibrary:2.3.0'
-
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.5.1'
+    implementation 'com.recker.flybanner:flybanner:1.3'
     implementation 'com.contrarywind:Android-PickerView:4.1.3'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     // 导入腾讯云直播 SDK aar
     implementation(name: 'LiteAVSDK_Professional_4.6.4218', ext: 'aar')
+    implementation 'com.github.zyyoona7:EasyPopup:1.1.1'
 }
