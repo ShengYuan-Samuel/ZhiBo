@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.jiyun.zhibo.view.BubbleView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/open_relative"
     >
     <com.tencent.rtmp.ui.TXCloudVideoView
         android:id="@+id/open_live_live"
@@ -11,12 +12,13 @@
         android:background="@drawable/icon_lodding"
         />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="35dp">
         <LinearLayout
+            android:id="@+id/open_live_head"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal"
@@ -98,6 +100,8 @@
         </LinearLayout>
 
         <RelativeLayout
+            android:id="@+id/open_live_headrelative"
+            android:layout_below="@+id/open_live_head"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_width="match_parent"
             android:gravity="center_vertical"
@@ -157,69 +161,133 @@
             </LinearLayout>
 
         </RelativeLayout>
-        <TextView
+
+        <LinearLayout
+            android:gravity="top"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical"
+            android:id="@+id/llgiftcontent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="300dp"
+            android:layout_marginTop="300dp"/>
+
+        <TextView
+            android:layout_below="@+id/llgiftcontent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
             android:text="我们倡导绿色直播，封面和直播内容涉及色情、低俗、暴力、引诱、暴露等都将被封停账号，同时禁止直播闹事、集会，文明直播，从我做起【网警24小时在线巡查】"
             android:textColor="#ffff00"
             android:textSize="18dp">
 
         </TextView>
-    </LinearLayout>
-
-    <RelativeLayout
+    </RelativeLayout>
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
+        <RelativeLayout
+            android:id="@+id/open_live_buttom_relative"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
 
-        <ImageView
-            android:id="@+id/open_music"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="19dp"
-            android:layout_marginStart="19dp"
-            android:src="@drawable/icon_challenge_bottom_music" />
+            >
 
-        <ImageView
-            android:id="@+id/open_xinxi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/open_music"
-            android:layout_marginLeft="12dp"
-            android:layout_marginStart="12dp"
-            android:layout_toEndOf="@+id/open_music"
-            android:layout_toRightOf="@+id/open_music"
-            android:src="@drawable/icon_challenge_bottom_xinxi" />
-        <ImageView
-            android:id="@+id/open_fanzhuan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/open_xinxi"
-            android:layout_marginLeft="12dp"
-            android:layout_marginStart="12dp"
-            android:visibility="gone"
-            android:layout_toEndOf="@+id/open_xinxi"
-            android:layout_toRightOf="@+id/open_xinxi"
-            android:src="@drawable/icon_challenge_bottom_fanzhuan" />
+            <ImageView
+                android:id="@+id/open_music"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="19dp"
+                android:layout_marginStart="19dp"
+                android:src="@drawable/icon_challenge_bottom_music" />
 
-
-        <ImageView
-            android:id="@+id/open_gift"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
-            android:layout_centerVertical="true"
-            android:src="@drawable/icon_live_gift_static" />
+            <ImageView
+                android:id="@+id/open_xinxi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/open_music"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@+id/open_music"
+                android:layout_toRightOf="@+id/open_music"
+                android:src="@drawable/icon_challenge_bottom_xinxi" />
+            <ImageView
+                android:id="@+id/open_fanzhuan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/open_xinxi"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
+                android:visibility="gone"
+                android:layout_toEndOf="@+id/open_xinxi"
+                android:layout_toRightOf="@+id/open_xinxi"
+                android:src="@drawable/icon_challenge_bottom_fanzhuan" />
 
 
-    </RelativeLayout>
-</RelativeLayout>
+            <ImageView
+                android:id="@+id/open_gift"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/icon_live_gift_static" />
+
+
+        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/llinputparent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/white"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etInput"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/white"
+                    android:hint="在此输入你要说的话!"
+                    android:maxLength="30"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:textColor="#888889"
+                    android:textColorHint="#c8c8c8"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/sendInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="@android:color/holo_blue_bright"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="5dp"
+                    android:text="发送"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </FrameLayout>
+
+</com.jiyun.zhibo.view.BubbleView>
 
 

@@ -9,6 +9,7 @@ import com.jiyun.zhibo.App;
 import com.jiyun.zhibo.model.biz.LiveService;
 import com.jiyun.zhibo.model.biz.LoginService;
 import com.jiyun.zhibo.model.biz.MyLoginService;
+import com.jiyun.zhibo.model.biz.OpenLiveService;
 import com.jiyun.zhibo.model.biz.PayService;
 import com.jiyun.zhibo.model.biz.RegisterPswService;
 import com.jiyun.zhibo.model.biz.RegisterService;
@@ -96,6 +97,10 @@ public class RetrofitUtils {
     //这是获取用户金币的
     public PayService getPayService(){
         return retrofit.create(PayService.class);
+    }
+    //这是获取礼物列表的
+    public OpenLiveService getOpenLiveService(){
+        return retrofit.create(OpenLiveService.class);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.jiyun.zhibo.ui.my.activity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jiyun.zhibo.R;
 import com.jiyun.zhibo.base.BaseActivity;
 import com.jiyun.zhibo.contract.PayContract;
+import com.jiyun.zhibo.model.entify.DingDanBean;
 import com.jiyun.zhibo.model.entify.MoneyDataBean;
 import com.jiyun.zhibo.model.entify.PayInFoData;
 import com.jiyun.zhibo.presenter.PayPresenter;
@@ -51,10 +53,9 @@ public class WalletActivity extends BaseActivity<PayPresenter> implements PayCon
     @BindView(R.id.pay_ok)
     Button payOk;
     private LinearLayout linearLayout;
-
-    private View lastView;
     private List<MoneyDataBean.DataBean.ListBean> mList;
     private MoneyAdapter moneyAdapter;
+    private int index;
 
     @Override
     protected int getLayOutId() {
@@ -71,6 +72,7 @@ public class WalletActivity extends BaseActivity<PayPresenter> implements PayCon
         moneyAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                index = position;
                 if (linearLayout != null){
                     linearLayout.setBackground(getResources().getDrawable(R.drawable.pay_shape));
                 }
@@ -108,7 +110,7 @@ public class WalletActivity extends BaseActivity<PayPresenter> implements PayCon
                 payZhifubao.setBackground(getResources().getDrawable(R.drawable.pay_shape));
                 break;
             case R.id.pay_ok:
-
+            presenter.getAddInFo("0","0","0","1");
                 break;
         }
     }
@@ -131,5 +133,21 @@ public class WalletActivity extends BaseActivity<PayPresenter> implements PayCon
         mList.addAll(moneyDataBean.getData().getList());
         moneyAdapter.notifyDataSetChanged();
 
+    }
+
+    @Override
+    public void showAddInFo(DingDanBean str) {
+        if (str.getData() == null) {
+            return;
+        }
+        long orderNo = str.getData().getOrderNo();
+        Log.d("WalletActivity", str.getCode());
+        presenter.getZhiFuBaoData(orderNo+"");
+
+    }
+
+    @Override
+    public void showZhiFuBaoData(String str) {
+        Log.d("WalletActivity", str);
     }
 }

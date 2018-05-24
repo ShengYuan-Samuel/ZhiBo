@@ -2,6 +2,7 @@ package com.jiyun.zhibo.presenter;
 
 import com.jiyun.zhibo.contract.PayContract;
 import com.jiyun.zhibo.model.biz.PayService;
+import com.jiyun.zhibo.model.entify.DingDanBean;
 import com.jiyun.zhibo.model.entify.MoneyDataBean;
 import com.jiyun.zhibo.model.entify.PayInFoData;
 import com.jiyun.zhibo.model.http.HttpFactory;
@@ -87,6 +88,82 @@ public class PayPresenter implements PayContract.Presenter{
 
                     }
                 });
+    }
+
+    @Override
+    public void getAddInFo(String type, String isIntegral, String isVouchers, String extendNo) {
+
+        HashMap<String,String> mHash = new HashMap<>();
+        mHash.put("type",type);
+        mHash.put("isIntegral",isIntegral);
+        mHash.put("isVouchers",isVouchers);
+        mHash.put("extendNo",extendNo);
+        mHash.put("time",SavaShareUtils.getInstance().getTime());
+        payService.getAddInFo(SavaShareUtils.getInstance().getUserNo(),SignUtils.getSign(mHash,SavaShareUtils.getInstance().getToken()),type,isIntegral,isVouchers,extendNo,SavaShareUtils.getInstance().getTime())
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<DingDanBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(DingDanBean responseBody) {
+
+                            view.showAddInFo(responseBody);
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+    }
+
+    @Override
+    public void getZhiFuBaoData(String orderNo) {
+        HashMap<String,String> mHash = new HashMap<>();
+        mHash.put("orderNo",orderNo);
+        mHash.put("time",SavaShareUtils.getInstance().getTime());
+        payService.getZhiFuBaoData(SavaShareUtils.getInstance().getUserNo(),SignUtils.getSign(mHash,SavaShareUtils.getInstance().getToken()),orderNo,SavaShareUtils.getInstance().getTime())
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ResponseBody>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(ResponseBody responseBody) {
+                        try {
+                            String string = responseBody.string();
+                            view.showZhiFuBaoData(string);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
     }
 
     @Override

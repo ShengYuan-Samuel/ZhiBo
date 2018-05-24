@@ -59,4 +59,7 @@ dependencies {
     // 导入腾讯云直播 SDK aar
     implementation(name: 'LiteAVSDK_Professional_4.6.4218', ext: 'aar')
     implementation 'com.github.zyyoona7:EasyPopup:1.1.1'
+    implementation 'com.facebook.fresco:fresco:0.12.0'
+    implementation 'com.king.view:flutteringlayout:1.1.0'
+
 }

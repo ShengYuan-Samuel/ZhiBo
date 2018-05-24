@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.jiyun.zhibo">
-
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 用于进行网络定位 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!-- 用于访问GPS定位 -->
@@ -67,11 +67,27 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="0980afd52f774720039dd44ddefa7a4b">
-            //开发者申请的key</meta-data>
+            </meta-data>
 
         <activity android:name=".ui.login.activity.SeetingActivity" />
-        <activity android:name=".ui.live.activity.OpenLiveActivity" />
+        <activity android:name=".ui.live.activity.OpenLiveActivity"  android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".ui.my.activity.WalletActivity"></activity>
+
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+        <activity
+            android:name="com.alipay.sdk.app.H5AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+
     </application>
 
 </manifest>
